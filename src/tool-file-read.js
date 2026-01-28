@@ -2,11 +2,14 @@ import { ChatOpenAI } from "@langchain/openai";
 import { tool } from "@langchain/core/tools";
 import fs from "node:fs/promises";
 import {
+  readfileTool,
   HumanMessage,
   SystemMessage,
   ToolMessage,
 } from "@langchain/core/messages";
 import { z } from "zod";
+import path from "node:path";
+import { spawn } from "node:child_process";
 
 const model = new ChatOpenAI({
   modelName: "qwen3-coder-30b-a3b-instruct",
@@ -16,21 +19,6 @@ const model = new ChatOpenAI({
     baseURL: "https://dashscope.aliyuncs.com/compatible-mode/v1",
   },
 });
-
-const readfileTool = tool(
-  async ({ filePath }) => {
-    const content = await fs.readFile(filePath, "utf-8");
-    return `文件内容:\n${content}`;
-  },
-  {
-    name: "read_file",
-    description:
-      "用此工具来读取文件内容。当用户要求读取文件、查看代码、分析文件内容时，调用此工具。输入文件路径（可以是相对路径或绝对路径）。",
-    schema: z.object({
-      filePath: z.string().describe("要读取的文件路径"),
-    }),
-  },
-);
 
 const tools = [readfileTool];
 
