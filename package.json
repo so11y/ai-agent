@@ -12,11 +12,16 @@
   "license": "ISC",
   "description": "",
   "type": "module",
-  "devDependencies": {
-    "@langchain/openai": "^1.2.3"
-  },
   "dependencies": {
+    "@langchain/classic": "^1.0.14",
+    "@langchain/community": "^1.1.11",
+    "@langchain/core": "^1.1.7",
+    "@langchain/mcp-adapters": "^1.1.1",
+    "@langchain/openai": "^1.2.0",
+    "@langchain/textsplitters": "^1.0.1",
+    "@modelcontextprotocol/sdk": "^1.25.1",
     "chalk": "^5.6.2",
-    "zod": "^4.3.6"
+    "cheerio": "^1.2.0",
+    "zod": "^3.23.8"
   }
 }
